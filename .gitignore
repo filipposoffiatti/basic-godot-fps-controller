@@ -1,0 +1,7 @@
+#Ignoring all unnecessary files
+*.godot
+*.editorconfig
+*.svg
+*.import
+*.tmp
+*.uid
