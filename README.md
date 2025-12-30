@@ -4,4 +4,4 @@ Features:
 
 -camera rotation
 
-Attach this script to the "player" node of the "main.tscn" file
+Attach the "player.gd" script to the Player (CharacterBody3D) node of the "main.tscn" file
