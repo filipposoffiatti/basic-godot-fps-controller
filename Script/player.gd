@@ -20,6 +20,7 @@ func _unhandled_input(event): #Used for global inputs
 		camera.rotate_x(-event.relative.y * senstivity) #Rotate camera
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 		#Set a clamp to the max rotation upwards and downwards of the camera
+	
 
 func _physics_process(delta): #Phyisics function
 	
@@ -33,6 +34,14 @@ func _physics_process(delta): #Phyisics function
 		player_direction.x -= 1
 	if Input.is_action_pressed("Right"): 
 		player_direction.x += 1	
+	if Input.is_action_pressed("Sprint"):
+			speed = 14
+	if Input.is_action_just_released("Sprint"):
+			speed = 8
+	if Input.is_action_pressed("Shift"):
+			speed = 4
+	if Input.is_action_just_released("Shift"):
+			speed = 8
 		
 	if player_direction != Vector3.ZERO: #If the player direction is not empty
 		player_direction = (head.transform.basis * player_direction).normalized() 
