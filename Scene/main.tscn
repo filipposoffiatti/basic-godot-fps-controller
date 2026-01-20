@@ -44,6 +44,46 @@ material_override = SubResource("StandardMaterial3D_r34rm")
 use_collision = true
 size = Vector3(19, 0.001, 19)
 
+[node name="CSGBox3D1" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -11.4, 1, 0)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 22.5, -39.9, 1, 0)
+use_collision = true
+size = Vector3(4, 2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -21.9, 1, -6)
+use_collision = true
+size = Vector3(8, 2, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -11.4, 1, 6)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -17.4, 1, 9)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -23.4, 1, 6)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="World"]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 3, -29.4, 1, 9)
+use_collision = true
+size = Vector3(1, 2, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World"]
+transform = Transform3D(2.598076, 1.5, 0, -1.5, 2.598076, 0, 0, 0, 3, -8.890283, -0.31420016, 0)
+use_collision = true
+size = Vector3(1.3572998, 1, 1)
+
 [node name="Player" type="Node" parent="."]
 
 [node name="Player" type="CharacterBody3D" parent="Player"]
