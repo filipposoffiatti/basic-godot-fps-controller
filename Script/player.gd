@@ -3,6 +3,7 @@ extends CharacterBody3D
 var speed = 8 #Player speed
 var gravity = 9.81 #Gravity
 var senstivity = 0.01 #Senstivity
+var is_sprinting := false #Sprinting flag
 
 @onready var head = $Head #Head reference (Camera pivot)
 @onready var camera = $Head/Camera3D #Camera reference
@@ -33,11 +34,19 @@ func _physics_process(delta): #Phyisics function
 	if Input.is_action_pressed("Left"): 
 		player_direction.x -= 1
 	if Input.is_action_pressed("Right"): 
-		player_direction.x += 1	
+		player_direction.x += 1
+			
 	if Input.is_action_pressed("Sprint"):
+		is_sprinting = true
+	else:
+		is_sprinting = false
+		
+	if is_on_floor():
+		if is_sprinting == true:
 			speed = 14
-	if Input.is_action_just_released("Sprint"):
+		else:
 			speed = 8
+			
 	if Input.is_action_pressed("Shift"):
 			speed = 4
 	if Input.is_action_just_released("Shift"):
