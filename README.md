@@ -1,6 +1,9 @@
-This branch contains code under development that could be buggy or not work at all and features that may or may not be implemented.
+Features:
 
+-Basic movement (WASD, Jump, Shift, Sprint)
 
+-Player camera rotation
 
-To be safe, use the code from the main branch.
+-basic level (still very empty)
 
+You can open the project or just take the "player.gd" script and add it to your player. 
