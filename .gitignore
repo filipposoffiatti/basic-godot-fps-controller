@@ -1,7 +1,3 @@
-#Ignoring all unnecessary files
-*.godot
-*.editorconfig
-*.svg
-*.import
-*.tmp
-*.uid
+.godot/
+.icon.svg.import
+

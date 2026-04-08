@@ -1,9 +1,6 @@
-Features:
+This branch contains code under development that could be buggy or not work at all and features that may or may not be implemented.
 
--basic movement (WASD, Jump, Sprint, Shift)
 
--player camera rotation
 
--basic level
+To be safe, use the code from the main branch.
 
-Attach the "player.gd" script to the Player (CharacterBody3D) node of the "main.tscn" file
