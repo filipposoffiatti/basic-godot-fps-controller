@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c6g5ari6qbyqj"]
 
+[ext_resource type="Texture2D" uid="uid://bd0oims5sevpg" path="res://Textures/canvas.png" id="1_bo1nx"]
 [ext_resource type="Script" uid="uid://c4npm1rl5pdr0" path="res://Scripts/player.gd" id="1_jjgbg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
@@ -14,6 +15,10 @@ background_mode = 2
 sky = SubResource("Sky_8gbba")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gbba"]
+albedo_texture = ExtResource("1_bo1nx")
+uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kry3j"]
 
@@ -35,8 +40,9 @@ environment = SubResource("Environment_jjvhh")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="World Enviroment" unique_id=1884293463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049999997, 0)
+material_overlay = SubResource("StandardMaterial3D_8gbba")
 use_collision = true
-size = Vector3(17, 0.1, 17)
+size = Vector3(33, 0.1, 33)
 
 [node name="Player" type="Node" parent="." unique_id=15803763]
 
