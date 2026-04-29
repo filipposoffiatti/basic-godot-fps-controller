@@ -1,3 +1,4 @@
 .godot/
 icon.svg.import
-
+player.gd.uid
+canvas.png.import
