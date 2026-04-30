@@ -2,8 +2,11 @@ extends CharacterBody3D
 
 var speed = 8.0 #Player speed
 var gravity = 9.81 #Gravity
-var senstivity = 0.01 #Mouse senstivity
+var senstivity_x = 0.008 #Vertical mouse senstivity
+var senstivity_y = 0.006 #Horizontal mouse senstivity
 var is_sprinting := false #Sprinting flag
+var jump_buffer_time = 0.15  #Seconds of tollerance
+var jump_buffer_timer = 0.0  #Internal timer
 
 @onready var head = $Head #Head reference (Camera pivot)
 @onready var camera = $Head/Camera3D #Camera reference
@@ -14,11 +17,11 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	 #Function to block mouse movement
 	
-func _unhandled_input(event): #Used for global inputs
+func _unhandled_input(event): #Used for event inputs
 	
 	if event is InputEventMouseMotion: #If there is mouse movement
-		head.rotate_y(-event.relative.x * senstivity) #Rotate head
-		camera.rotate_x(-event.relative.y * senstivity) #Rotate camera
+		head.rotate_y(-event.relative.x * senstivity_x) #Rotate head
+		camera.rotate_x(-event.relative.y * senstivity_y) #Rotate camera
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-80), deg_to_rad(80))
 		#Set a clamp to the max rotation upwards and downwards of the camera
 	
@@ -59,9 +62,15 @@ func _physics_process(delta): #Phyisics function
 		player_velocity.x = lerp(player_velocity.x, player_direction.x * speed, 0.03)
 		player_velocity.z = lerp(player_velocity.z, player_direction.z * speed, 0.03)
 	
-	if is_on_floor() and Input.is_action_pressed("Jump"): 
+	if jump_buffer_timer > 0: #If the buffer_timer is greater than 0 it begins to reduce every delta frame
+		jump_buffer_timer -= delta
+		
+	if Input.is_action_just_pressed("Jump"): #If the player jumps the buffer time is added to the timer
+		jump_buffer_timer = jump_buffer_time
+	
+	if is_on_floor() and jump_buffer_timer > 0: #If the player is on the floor and the buffer is not 0 the player jumps
 		player_velocity.y = 6
-		#If the player is on ground and presses "Jump" it makes him jump
+		jump_buffer_timer = 0.0
 	
 	if not is_on_floor(): 
 		
