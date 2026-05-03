@@ -47,7 +47,7 @@ size = Vector3(33, 0.1, 33)
 [node name="Player" type="Node" parent="." unique_id=15803763]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="Player" unique_id=810783452]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_jjgbg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CharacterBody3D" unique_id=1809792616]
