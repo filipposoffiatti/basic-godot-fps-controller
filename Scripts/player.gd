@@ -6,6 +6,7 @@ var senstivity = 0.008 #Mouse senstivity
 var is_sprinting := false #Sprinting flag
 var jump_buffer_time = 0.15  #Seconds of tollerance
 var jump_buffer_timer = 0.0  #Internal timer
+var crouch_toggle := false; #Crouch toggle
 
 @onready var head = $Head #Head reference (Camera pivot)
 @onready var camera = $Head/Camera3D #Camera reference
@@ -26,10 +27,14 @@ func _unhandled_input(event): #Used for unhandled inputs
 
 func _process(delta): #Process function (Relative to the current fps)
 	
-	if is_on_floor() and Input.is_action_pressed("Crouch"):
-		$CollisionShape3D.scale.y = lerp($CollisionShape3D.scale.y, 0.5, delta * 10.0)
+	if is_on_floor() and Input.is_action_just_pressed("Crouch"): 
+		crouch_toggle = !crouch_toggle #When pressing "crouch" the state of the variabile changes to true or false
+		
+	if crouch_toggle == true: #While croch_toggle is true the player stays in "crouch" and it's slower
+		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 0.4, delta * 10.0)
+		speed = lerp(speed, 3.0, 0.05)	
 	else:
-		$CollisionShape3D.scale.y = lerp($CollisionShape3D.scale.y, 1.0, delta * 10.0)
+		$CollisionShape3D.shape.height = lerp($CollisionShape3D.shape.height, 1.0, delta * 10.0)
 
 func _physics_process(delta): #Phyisics function (locked to 60fps)
 	
@@ -58,6 +63,17 @@ func _physics_process(delta): #Phyisics function (locked to 60fps)
 	if Input.is_action_just_released("Shift"): #the player exits "shift" gradually
 			speed = lerp(speed, 8.0, 0.3)
 	
+	#GRAVITY
+	if is_on_floor(): #When is on floor the player_velocity.y is set to 0
+		player_velocity.y = 0
+	else: #When is not on floor the player_velocity.y is changed
+		if player_velocity.y < 0:
+			player_velocity.y -= (gravity * delta) 
+			#When the player jumps, while he goes up the gravity is normal
+		else:
+			player_velocity.y -= (gravity * delta * 2.5) 
+			#When the player is falling the gravity is increased
+			
 	#JUMPING
 	if jump_buffer_timer > 0: #If the buffer_timer is greater than 0 it begins to reduce every delta frame
 		jump_buffer_timer -= delta
@@ -68,16 +84,6 @@ func _physics_process(delta): #Phyisics function (locked to 60fps)
 	if is_on_floor() and jump_buffer_timer > 0: #If the player is on the floor and the buffer is not 0 the player jumps
 		player_velocity.y = 6
 		jump_buffer_timer = 0.0
-	
-	#GRAVITY
-	if not is_on_floor(): 
-		
-		if player_velocity.y < 0:
-			player_velocity.y -= (gravity * delta) 
-			#When the player jumps, while he goes up the gravity is normal
-		else:
-			player_velocity.y -= (gravity * delta * 2.5) 
-			#When the player is falling the gravity is increased
 			
 	#MOVEMENT
 	if is_on_floor(): #If the player is on the floor the player velocity is interpolated beetween the player direction times the speed and the velocity of the previous frame
