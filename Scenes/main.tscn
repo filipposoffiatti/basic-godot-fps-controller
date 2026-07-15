@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c6g5ari6qbyqj"]
 
 [ext_resource type="PackedScene" uid="uid://bennw4h4yidos" path="res://Assets/Level.blend" id="1_bo1nx"]
-[ext_resource type="Script" uid="uid://c4npm1rl5pdr0" path="res://Scripts/player.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://dy0fcq21xsn87" path="res://Scripts/player.gd" id="2_bo1nx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bo1nx"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,9 +16,9 @@ sky = SubResource("Sky_8gbba")
 tonemap_mode = 2
 sdfgi_cascades = 6
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_kry3j"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8gbba"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bo1nx"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jjvhh"]
 
 [node name="Main" type="Node3D" unique_id=1639544261]
 
@@ -35,23 +35,21 @@ environment = SubResource("Environment_jjvhh")
 
 [node name="Level" parent="World Enviroment" unique_id=1836468575 instance=ExtResource("1_bo1nx")]
 
-[node name="Player" type="Node" parent="." unique_id=15803763]
+[node name="Player" type="Node" parent="." unique_id=28653325]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Player" unique_id=810783452]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-script = ExtResource("1_jjgbg")
+[node name="CharacterBody3D" type="CharacterBody3D" parent="Player" unique_id=1322490985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+script = ExtResource("2_bo1nx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CharacterBody3D" unique_id=1809792616]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CharacterBody3D" unique_id=1769533705]
+mesh = SubResource("CapsuleMesh_8gbba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/CharacterBody3D" unique_id=1721920033]
+shape = SubResource("CapsuleShape3D_jjvhh")
+
+[node name="Head" type="Node3D" parent="Player/CharacterBody3D" unique_id=954806125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_kry3j")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/CharacterBody3D" unique_id=83737591]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_bo1nx")
-
-[node name="Head" type="Node3D" parent="Player/CharacterBody3D" unique_id=882449294]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/CharacterBody3D/Head" unique_id=155465154]
+[node name="Camera3D" type="Camera3D" parent="Player/CharacterBody3D/Head" unique_id=1027007705]
 
 [editable path="World Enviroment/Level"]
