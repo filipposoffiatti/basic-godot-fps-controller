@@ -1,8 +1,10 @@
 Features:
 
-\-(WASD, Jump, Shift, Crouch, Sprint) with linear movement
+\-(WASD, Jump, Shift, Crouch, Sprint) with gradual movement
 
 \-Player camera rotation
+
+\-Player camera head bob animation 
 
 \-Basic level with texture
 
